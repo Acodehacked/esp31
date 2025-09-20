@@ -30,12 +30,6 @@ const Page = () => {
       */}
       <Header />
       <Hero />
-      <About />
-      <Services />
-      <Patients />
-      <Doctors />
-      <Security />
-      <Footer />
     </>
   )
 }

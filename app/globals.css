@@ -1,35 +1,114 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Light theme colors */
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(0 0% 3.9%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(0 0% 3.9%);
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(0 0% 3.9%);
+  --color-primary: hsl(84 81% 44%);
+  --color-primary-foreground: hsl(0 0% 98%);
+  --color-secondary: hsl(84 20% 95%);
+  --color-secondary-foreground: hsl(0 0% 9%);
+  --color-muted: hsl(0 0% 96.1%);
+  --color-muted-foreground: hsl(0 0% 45.1%);
+  --color-accent: hsl(84 20% 95%);
+  --color-accent-foreground: hsl(0 0% 9%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(0 0% 89.8%);
+  --color-input: hsl(0 0% 89.8%);
+  --color-ring: hsl(84 81% 44%);
+  --default-border-radius: 0.75rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: hsl(0 0% 3.9%);
+    --color-foreground: hsl(0 0% 98%);
+    --color-card: hsl(0 0% 3.9%);
+    --color-card-foreground: hsl(0 0% 98%);
+    --color-popover: hsl(0 0% 3.9%);
+    --color-popover-foreground: hsl(0 0% 98%);
+    --color-primary: hsl(84 81% 44%);
+    --color-primary-foreground: hsl(0 0% 9%);
+    --color-secondary: hsl(0 0% 14.9%);
+    --color-secondary-foreground: hsl(0 0% 98%);
+    --color-muted: hsl(0 0% 14.9%);
+    --color-muted-foreground: hsl(0 0% 63.9%);
+    --color-accent: hsl(0 0% 14.9%);
+    --color-accent-foreground: hsl(0 0% 98%);
+    --color-destructive: hsl(0 62.8% 30.6%);
+    --color-destructive-foreground: hsl(0 0% 98%);
+    --color-border: hsl(0 0% 14.9%);
+    --color-input: hsl(0 0% 14.9%);
+    --color-ring: hsl(84 81% 44%);
+  }
 }
 
-body {
-  background: #ffffff;
-  color: #171717;
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* Add this in globals.css */
-::-webkit-scrollbar {
-  display: none;
+.dark {
+  --color-background: hsl(0 0% 3.9%);
+  --color-foreground: hsl(0 0% 98%);
+  --color-card: hsl(0 0% 3.9%);
+  --color-card-foreground: hsl(0 0% 98%);
+  --color-popover: hsl(0 0% 3.9%);
+  --color-popover-foreground: hsl(0 0% 98%);
+  --color-primary: hsl(84 81% 44%);
+  --color-primary-foreground: hsl(0 0% 9%);
+  --color-secondary: hsl(0 0% 14.9%);
+  --color-secondary-foreground: hsl(0 0% 98%);
+  --color-muted: hsl(0 0% 14.9%);
+  --color-muted-foreground: hsl(0 0% 63.9%);
+  --color-accent: hsl(0 0% 14.9%);
+  --color-accent-foreground: hsl(0 0% 98%);
+  --color-destructive: hsl(0 62.8% 30.6%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(0 0% 14.9%);
+  --color-input: hsl(0 0% 14.9%);
+  --color-ring: hsl(84 81% 44%);
 }
 
-html, body {
-   margin: 0;
-  padding: 0;
-  background: #ffffff;
-  color: #171717;
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden; /* prevent horizontal scroll */
-  -ms-overflow-style: none;  /* IE/Edge */
-  scrollbar-width: none;     /* Firefox */
-  scroll-behavior: smooth;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Healthcare theme specific styles */
+@layer components {
+  .healthcare-gradient {
+    @apply bg-gradient-to-br from-primary/20 to-primary/10;
+  }
+
+  .healthcare-card {
+    @apply bg-card border rounded-lg shadow-sm;
+  }
+
+  .healthcare-button {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors;
+  }
+
+  .healthcare-input {
+    @apply bg-background border border-input rounded-md px-3 py-2 text-sm;
+  }
 }
